@@ -1,0 +1,16 @@
+var sheet_id = "1eyj0rWZJ14ubbd5nUd1f-OGG7VH2GWwCyl4_YhRnX9Q";
+var ss = SpreadsheetApp.openById(sheet_id);
+var sheet = ss.getSheetByName('smart');
+function doPost(e) {
+  var val = e.parameter.value;
+  if (e.parameter.value !== undefined){
+    var range = sheet.getRange('A2');
+    range.setValue(val);
+  }
+}
+function doGet(e){
+  var read = e.parameter.read;
+  if (read !== undefined){
+    return ContentService.createTextOutput(sheet.getRange('B2').getValue());
+  }
+}
